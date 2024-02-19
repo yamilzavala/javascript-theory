@@ -33,3 +33,19 @@ function maxSubarraySum(arr, num){
      return max;
   }
 
+  //refactor
+  const maxSumWindow = (arr, num) => {
+   if(arr.length < num) return null;
+   let temp = -Infinity;
+   let max = 0;
+   for(let i = 0; i < num; i++) {
+       max += arr[i];
+   }
+   temp = max;
+   for(let i = num; i < arr.length; i++) {
+       temp = temp - arr[i - num] + arr[i];
+       max = Math.max(max, temp);
+   }
+   return max;
+}
+
