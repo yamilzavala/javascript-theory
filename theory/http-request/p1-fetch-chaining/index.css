@@ -1,0 +1,47 @@
+.container {
+    max-height: 300px;
+    border: solid 1px red;
+    height: 460px;
+    overflow-y: hidden;
+    overflow-y: auto;
+    position: relative;
+}
+
+.search{
+   
+}
+
+.table-sic-code {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;   
+  }
+
+  .header-sic-code {
+    position: sticky;
+    top: 0;
+    left: 0;
+    display: flex;
+    background-color: white;
+  }
+
+  .sub-header-sic-code {
+    width: 50%;
+  }
+
+  .rows {
+    
+  }
+
+  .row-sic-code {
+    display: flex;
+  }
+
+  .row-sic-code:nth-child(odd) {
+   background-color: gray;
+  }
+
+  .cell-sic-code {
+    width: 50%;
+  }
