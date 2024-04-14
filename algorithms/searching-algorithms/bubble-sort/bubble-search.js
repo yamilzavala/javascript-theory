@@ -1,10 +1,18 @@
+/*
+BubbleSort
+> start looping from with a variable called 'i' the end of the array towards the begining.
+> start a inner loop  with a variable called 'j' from the beginning until 'i-1'
+> if the arr[j] is greater than arr[j+1], swap those two values
+> return the stored arrar
+*/
+
 function swap(arr, idx1, idx2) {
     const temp = arr[idx1];
     arr[idx1] = arr[idx2];
     arr[idx2] = temp;
 }
 
-//naive solution
+//bubbleSort naive solution
 function bubbleSort(arr) {
       for(let i = 0; i < arr.length; i++) {
         for(let j = 0; j < arr.length; j++) {
@@ -18,7 +26,7 @@ function bubbleSort(arr) {
       }
     return arr;
 }
-console.log('bubbleSort: ',bubbleSort([37,45,29,8]))
+//console.log('bubbleSort: ',bubbleSort([37,45,29,8]))
 
 //bubble sort optimized solution
 function bubbleSortOptimized(arr) {
