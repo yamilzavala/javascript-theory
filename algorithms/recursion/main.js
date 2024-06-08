@@ -18,7 +18,7 @@ function factorial(num) {
 function iterativeFactorial(num) {
     let fac = 1;
     for (let index = num; index > 0; index--) {
-        sum *= index;         
+        fac *= index;         
     }
     return fac;
 }
