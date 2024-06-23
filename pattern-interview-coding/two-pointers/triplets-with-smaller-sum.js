@@ -35,47 +35,59 @@ Input = [0], Target = 0
 
 
 With a sorted array we ensure that:
--if the sum is greater or equal than target, move end pointer to the left (end--), the sum will be lower and closer to target
+-if the sum is greater or equal than target, move end pointer to the left (end--), the sum will be lower and closer to target. And increment result with:
+ result = end - start.                                              C   S        E
+ But why this? Becase for instance, if we have the following arr = [-1, 1, 2, 3, 4],
+ sum = -1 + 1 + 4
+ sum = 4
+ so.. if arr is in order, the sum to folllowing numbers to start still end, should be lower to:
+ sum -1 + 1 + 2 = 2
+ sum -1 + 1 + 3 = 3
+
 -if the sum is less than target, move start to right
 
 Input: sorted = [-1, 0, 2, 3], 
-Target = 3
+Target = 5
 
 S = Start
 C = Current
 E = End
 
-x + y + z < target
-y + z < target - x
-
-  C  S     E
-[-1, 0, 2, 3] => -1  0  3 = 2 < 3 => increment S++; and insert in result; 
+  C  S        E
+[-1, 1, 2, 3, 4] => -1  1  4 = 4 < 5 => result += E-S(3) => -1  1  2 = 2; -1  1  3 = 3; S++ 
+  C     S     E
+[-1, 1, 2, 3, 4] => -1  2  4 = 5 >= 5 => E--;
+  C     S  E
+[-1, 1, 2, 3, 4] => -1  2  3 = 4 < 5 => result += E-S(1); E--;
+     C  S     E
+[-1, 1, 2, 3, 4] => 1  2  4 = 7 > 5 => E--;
+     C  S  E
+[-1, 1, 2, 3, 4] => 1  2  3 = 6 > 5 => E--;
+        C  S  E
+[-1, 1, 2, 3, 4] => 2  3  4 = 9 > 5 => E--;
 
 */
-
- 
 var tripletWithSmallerSum  = function(array, target) {
   const sortedArr = array.sort((a,b)=>a-b)
-  let result = [];
+  let result = 0;
   
-  for(let init = 0; init < sortedArr.length; init++) {
+  for(let init = 0; init < sortedArr.length - 2; init++) {
     //pointers
     let start = init + 1;
     let end = sortedArr.length - 1;
     
     while(start < end) {
-      let currentArr = [sortedArr[init], sortedArr[start], sortedArr[end]]
-      let sum = sortedArr[start] + sortedArr[end];
+      let sum = sortedArr[init] + sortedArr[start] + sortedArr[end];
 
-      if(sum < target - init) {
-        result.push(currentArr);
+      if(sum < target) {
+        result += end - start;
         start++;
       } else {
          end--;
       }
     }
   }
-  return result.length;
+  return result;
 };
 
 // const array = [-1, 1, 2, 3, 4]
